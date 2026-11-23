@@ -1,0 +1,46 @@
+{
+  "name": "opencode-ensemble-jev",
+  "version": "0.1.0",
+  "description": "Typed Jev decisions for OpenCode Ensemble",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allcupsnotinprivate/opencode-ensemble-jev.git"
+  },
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "ensemble",
+    "openrouter",
+    "jev"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "files": [
+    "src",
+    "examples",
+    "docs",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "bun test",
+    "e2e": "bun tests/live/run.ts",
+    "prepublishOnly": "bun run typecheck && bun test"
+  },
+  "dependencies": {
+    "@opencode/plugin": "2.3.2",
+    "zod": "^4.1.0"
+  },
+  "peerDependencies": {
+    "@hueyexe/opencode-ensemble": "0.21.5"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.0",
+    "typescript": "~5.9.3",
+    "@hueyexe/opencode-ensemble": "0.21.5"
+  }
+}

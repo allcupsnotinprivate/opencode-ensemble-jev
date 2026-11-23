@@ -1,0 +1,19 @@
+name: verify
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: bun install --frozen-lockfile
+      - run: bun run typecheck && bun test
+      - run: npm install --global @opencode/cli@2.3.2
+      - run: bun run e2e --probe && bun run e2e && bun run e2e --decisions && bun run e2e --broken && bun run e2e --invalid
+      - run: npm pack --dry-run

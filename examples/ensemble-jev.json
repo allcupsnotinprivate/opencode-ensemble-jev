@@ -1,0 +1,28 @@
+{
+  "enabled": true,
+  "jev": {
+    "provider": "openrouter",
+    "model": "typesafe/jev-1.13",
+    "timeoutMs": 2500,
+    "maxRetries": 1
+  },
+  "routing": {
+    "mode": "adaptive",
+    "routeOnSpawn": true,
+    "routeOnFailure": true,
+    "routeOnCompletion": true,
+    "tacticalRouting": false,
+    "minConfidence": 0.7,
+    "cooldownSteps": 3,
+    "maxEscalationsPerTask": 2
+  },
+  "models": {
+    "fast": ["openrouter/openai/gpt-oss-120b"],
+    "balanced": ["openrouter/anthropic/claude-sonnet-5.5"],
+    "strong": ["openai/gpt-6.1-sol"]
+  },
+  "budget": { "maxTier": "strong", "maxCalls": 100, "maxCostUsd": 0.05 },
+  "parallelism": { "maxAgents": 3, "requireWorktreeForWriters": true },
+  "review": { "enabled": true, "minimumLevel": "light" },
+  "telemetry": { "enabled": true, "format": "jsonl", "debug": false }
+}
